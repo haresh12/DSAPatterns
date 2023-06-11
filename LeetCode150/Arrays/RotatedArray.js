@@ -51,14 +51,16 @@ rotate 2 steps to the right: [3,99,-1,-100]
   AND THIS IS THE FORMULA THAT WILL HELP US IN SETTING CIRCULER WAY.
 */
 
+function rotate(nums,k){
+  let res = [];
+  for(let i = 0 ; i < nums.length ; i++){
+   res[(i+k)%nums.length] = nums[i];
+  } 
 
-function rotateArray(arr,k){
-
- for(let i = 0 ; i < arr.length ; i++){
-    arr[(i+k)%arr.length] = arr[i]
- } 
- return arr;  
+  // WHY THIS BECAUSE WE ARE NOT ALLOWED TO RETURN ANY ARRAY SO YOU GET THAT
+  for(let i = 0 ; i < res.length ;i++){
+   nums[i] = res[i];
+ }
 }
 
-const res = rotateArray([1,2,3,4,5,6,7],3);
-console.log(res);
+console.log(rotate([1,2,3,4,5,6,7],3))
