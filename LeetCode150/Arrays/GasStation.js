@@ -28,7 +28,6 @@ circuit once in the clockwise direction, otherwise return -1. If there exists a 
 // console.log(gasStation([1,2,3,4,5],[3,4,5,1,2]))
 
 // GREEDY SOLUTION (TRY TO FIND MORE UNDERSTANDABLE SOLUTION)
-
 function gasStation(gas,cost){
   let gasTotal = 0;
   let costTotal = 0;
