@@ -22,25 +22,22 @@ Explanation: s is an empty string "" after removing non-alphanumeric characters.
 Since an empty string reads the same forward and backward, it is a palindrome.
 */
 
+function isValidPalandrom(str){
 
-function valid(str){
- let i = 0;
- // THIS REGEX LINE NEED TO BE LEARN
- let regexPattern = /[^A-Za-z0-9]/g;
- let newStr = str.replace(regexPattern, "").toLowerCase();
+  let regexPattern = /[^A-Za-z0-9]/g;
+  let newStr = str.replace(regexPattern, "").toLowerCase();
+  let i = 0, j = newStr.length-1;
 
- let j = newStr.length - 1;
-
- while(i <= j){
+  while(i <= j ){
     if(newStr[i] === newStr[j]){
-        i++;
-        j--;
+       i++;
+       j--
     }else{
-        console.log(newStr[i],newStr[j])
-        return false;
+      console.log(i,j)
+      return false;
     }
- }
- return true;
+  }
+  return true
 }
 
-console.log(valid(''))
+console.log(isValidPalandrom('A man, a plan, a canal: Panama'))
