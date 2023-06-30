@@ -40,7 +40,6 @@ function anagram(s,t){
         return false;
     }
  }
- console.log(sMap)
  return Object.keys(sMap).length === 0;
 }
 
