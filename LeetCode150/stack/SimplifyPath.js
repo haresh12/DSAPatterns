@@ -40,23 +40,24 @@ Explanation: In the canonical path, multiple consecutive slashes are replaced by
 //    return `/${newPath.split('').reverse().join('')}`
 //  }
 
+// UNDERSTOOD ONLY AFTER LOOKING INTO SOLUTION
+function simplifyPath(path) {
+ // I WAS NOT AWARE ABOUT SPLIT METHOD ITS INCREDIBLE IN THIS CASE 
+ let paths = path.split('/');
 
-function simplifyPath(path){
+ paths = paths.filter(path => path !== ''); // split has convert all / into '' and with filter we are removing it
+
  let stack = [];
- let curr = "";
-
- for(let i = 1 ; i < path.length ; i++){
-     let ch = path[i];
-     if(ch === '/'){
-        console.log(curr)
-       if(curr === '..' && stack.length > 0) stack.pop()
-       else if(curr !== '' && curr !== '.' && curr !== '..') stack.push(curr);
-       
-       curr="" // reset
-     }else{
-        curr+=ch;
-     }
+ for(let i = 0 ; i < paths.length ; i++){
+   
+  if(paths[i] === '..'){
+    stack.pop();
+  }else if(paths[i] === '.'){
+    continue;
+  }else{
+    stack.push(paths[i])
+  }
  }
- return "/" + stack.join('/')
- }
-console.log(simplifyPath('/a//b////c/d//././/..'))
+ return `/${stack.join('/')}`   
+};
+console.log(simplifyPath('/home//foo/'))
