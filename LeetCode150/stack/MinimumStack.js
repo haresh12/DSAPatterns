@@ -15,46 +15,30 @@ You must implement a solution with O(1) time complexity for each function.
  
 */
 
-
+//https://www.youtube.com/watch?v=Trz7JM610Uc (Stuck with getMin and was not able to do in constant time)
 class MinStack {
     constructor(){
-       this.stack = [];
-       this.minstack = [];
+      this.data = []
     }
 
- push(val){
- this.stack.push(val);
- if(this.minstack.length === 0){
-   this.minstack.push(val); 
- }else {
-    let last = this.minstack[this.minstack.length-1];
-   if(val >= last){
-    console.log(val,last)
-       this.minstack.pop();
-       this.minstack.push(val);
-       this.minstack.push(last) 
-    }else if (val < last){
-        this.minstack.push(val)
-    }
- } 
- }
+  push(val){
+   this.data.push({
+      value : val,
+      min : this.data.length === 0 ? val: Math.min(val,this.getMin())
+    })
+  }  
 
- top(){
-    return this.stack[this.stack.length-1];
- }
-
- pop(){
-  if(this.stack.length === 0) return;
-  let last = this.stack.pop();
-  if(this.minstack[this.minstack.length - 1] === last){
-    this.minstack.pop();
+  pop(){
+   return this.data.pop()
   }
- }
 
- getMin(){
-    console.log(this.minstack)
-    return this.minstack[this.minstack.length-1];
- }
+  top(){
+   return this.data[this.data.length - 1].value;
+  }
+
+  getMin(){
+   return this.data[this.data.length - 1].min
+  }
 }
 
 const stack  = new MinStack();
