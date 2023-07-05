@@ -20,37 +20,25 @@ Output: 23
 */
 
 // DO IT BY SELF WORST VIDEO WASTED 36 MINUTE DON'T WATCH PEPCODING VIDEO FOR THIS
-function cal(str){
-    let sign = 1;
-    let sum = 0;
-    let stack = [];
-
-    for(let i = 0 ; i < str.length ; i++){
-        let ch = str[i];
-
-        if(Number.isInteger(parseInt(ch))){
-          let val = 0;
-          while(i < str.length  && Number.isInteger(parseInt(ch))){
-            val=val*10 + (parseInt(ch) - '0');
-            i++;
-          }
-          i--;
-          val = val*sign;
-          sign =1;
-          sum+=val;
-        }else if(ch === '('){
-          stack.push(sum);
-          stack.push(sign);
-          sum = 0;
-          sign+=1;
-        }else if(ch === ')'){
-          sum *= stack.pop();
-          sum += stack.pop();
-        }else if(ch === '-'){
-           sign *=-1;
+var calculate = function(s) {
+    let res = 0, sum = 0, sign = 1;
+    let myStack = [];
+    myStack.push(1);
+    const isDigit = (ch) => {
+        return ch >= '0' && ch <= '9';
+    }
+    for(let ch of s){
+        if(isDigit(ch)) sum = sum * 10 + (ch - '0');
+        else{
+            res += sum * sign * myStack[myStack.length - 1];
+            sum = 0;
+            if(ch === '-') sign = -1;
+            else if(ch === '+') sign = 1;
+            else if(ch === '(') {myStack.push(myStack[myStack.length - 1] * sign); sign = 1;}
+            else if(ch === ')') myStack.pop(); 
         }
     }
-    return sum;
-}
+    return res += (sign * sum);
+};
 
 console.log(cal('(1+(4+5+2)-3)+(6+8)'))
