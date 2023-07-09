@@ -27,28 +27,24 @@ let head = {
     } 
  }   
 }
-function reverseList(head,left,right){
-if(head === null) return null;    
-if(left === right) return head;
+//https://www.youtube.com/watch?v=RF_M9tX4Eag not able to do 
+/*
+   I THING I NEED A LOT MORE PRACTICE IN LINKED LIST WHEN IT COMES TO PLAYING WITH NODES SO LETS WATCH 
+   THIS LOVE BABBER VIDEO TO CLEAR FEW BASIC CONCEPT ABOUT LINKED LIST AND THEN MOVE BACK TO THIS QUESTION
+*/
 
-le
-let count = 1;
-let leftPrev = null;
-let leftNext =  head.next;
-let rightPrev = null;
-let rightNext = null;
-
-while(head !==  null){
-  if(count < left){
-    leftPrev = head;
-    leftNext = leftNext?.next ?? null;
-  }else{
-    c
+ function reverse(head){
+  let curr = head;
+  let prev = null;
+  
+  while(curr !== null){
+    let temp = curr.next;
+    curr.next = prev;
+    prev = curr;
+    curr = temp
   }
-  head = head.next;
-  count++;
-} 
+  return prev
+ }
 
-}
+ console.log(reverse(head))
 
-console.log(reverseList(head,))
