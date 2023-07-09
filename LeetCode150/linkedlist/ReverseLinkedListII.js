@@ -32,19 +32,75 @@ let head = {
    I THING I NEED A LOT MORE PRACTICE IN LINKED LIST WHEN IT COMES TO PLAYING WITH NODES SO LETS WATCH 
    THIS LOVE BABBER VIDEO TO CLEAR FEW BASIC CONCEPT ABOUT LINKED LIST AND THEN MOVE BACK TO THIS QUESTION
 */
-
- function reverse(head){
-  let curr = head;
-  let prev = null;
+ 
+//  function reverse(head){
+//   let curr = head;
+//   let prev = null;
   
-  while(curr !== null){
+//   while(curr !== null){
+//     let temp = curr.next;
+//     curr.next = prev;
+//     prev = curr;
+//     curr = temp
+//   }
+//   return prev
+//  }
+
+//  console.log(reverse(head))
+// MUCH MORE HARD THEN I THOUGHT NEED MORE PRACTICE
+function reverseBetween(head, left, right) {
+  if (left === right) {
+    // No reversal needed, same position
+    return head;
+  }
+  
+  let prev = null;
+  let curr = head;
+  
+  // Traverse to the left position
+  for (let i = 1; i < left; i++) {
+    prev = curr;
+    curr = curr.next;
+  }
+  
+  // Keep track of the left node and the node at the previous position
+  const leftNode = curr;
+  const prevNode = prev;
+  
+  // Reverse the linked list from left to right position
+  for (let i = left; i <= right; i++) {
     let temp = curr.next;
     curr.next = prev;
     prev = curr;
-    curr = temp
+    curr = temp;
   }
-  return prev
+  
+  // CODE BELOW THIS LINE IS HARD TO UNDERSTAND 
+  // Update the next pointers of the left node and the previous node
+  if (prevNode !== null) {
+    prevNode.next = prev;
+  } else {
+    head = prev;
+  }
+  
+  leftNode.next = curr;
+  
+  return head;
+}
+
+
+reverseBetween(head,2,3)
+
+
+function reverse(head){
+ let prev = null;
+ let curr = head;
+
+ while(curr !== null){
+  let temp = curr.next;
+  curr.next = prev;
+  prev = curr;
+  curr = temp;
  }
-
- console.log(reverse(head))
-
+ return prev
+}
