@@ -68,7 +68,10 @@ function reverseBetween(head, left, right) {
   const prevNode = prev;
   
   // Reverse the linked list from left to right position
-  for (let i = left; i <= right; i++) {
+  // current.next me first 3 hoga and prev me 2 hai initial so first time loop me 3 2 se connect hoga
+  // second time me  4 3 se connect hoga
+  // third time me 5 4 se connect hoga
+  for (let i = left; i <=right; i++) {
     let temp = curr.next;
     curr.next = prev;
     prev = curr;
@@ -89,7 +92,7 @@ function reverseBetween(head, left, right) {
 }
 
 
-reverseBetween(head,2,3)
+console.log(JSON.stringify(reverseBetween(head,2,4)))
 
 
 function reverse(head){
@@ -103,4 +106,35 @@ function reverse(head){
   curr = temp;
  }
  return prev
+}
+
+function reversePrec(head,left,right){
+ if(left === right) return head;
+ 
+ let prev = null;
+ let curr = head;
+
+ for(let i = 0 ; i < left ; i++){
+     prev = curr;
+     curr = curr.next;
+ }
+
+ let leftPrev = prev;
+ let leftNode = curr;
+
+ for(let i = left ; i <= right ; i++){
+  let temp = curr.next;
+  curr.next = prev;
+  prev = curr;
+  curr = temp;
+ }
+
+ if(leftPrev !== null){
+   leftPrev.next = prev
+ }else{
+  leftPrev = head;
+ }
+ leftNode.next = curr;
+
+ return head
 }
