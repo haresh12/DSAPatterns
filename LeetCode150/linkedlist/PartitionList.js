@@ -36,36 +36,47 @@ let head = {
       } 
    }   
   }
-function partition(head,pivot){
-  let lessThen = null;
-  let lessThenCurr = null
-  let greaterThen = null;
-  let greaterThenCurr = null;
 
-  let temp = head;
+class Node {
+  constructor(val){
+    this.val = val;
+    this.next = null;
+  } 
+}
+function partition(head,val){
+   let lessThenHead = null;
+   let lessThenCurr = null;
+
+   let greaterThenHead = null;
+   let greaterThenCurr = null;
+
+   let temp = head;
 
    while(temp !== null){
-     if(temp.val < pivot){
-        if(lessThen === null){
-           lessThen = lessThenCurr = temp
-        }else {
-              lessThenCurr.next = temp;
-              lessThenCurr = temp
-        }
-     }else {
-      if(greaterThen === null){
-         greaterThen = greaterThenCurr = temp
-      }else {
-            greaterThenCurr.next = temp;
-            greaterThenCurr = temp
+      let newNode = new Node(temp.val)
+      if(temp.val < val){
+          if(lessThenHead === null){
+            lessThenHead = lessThenCurr = newNode
+          }else{
+            lessThenCurr.next = newNode;
+            lessThenCurr = newNode 
+          } 
+      }else{
+         if(greaterThenHead === null){
+            greaterThenHead = greaterThenCurr = newNode
+          }else{
+            greaterThenCurr.next = newNode;
+            greaterThenCurr = newNode 
+          } 
       }
-     } 
-     temp = temp.next;
+      temp = temp.next;
    }
-
- lessThenCurr.next = greaterThen;
  
- return lessThen;
+ if(lessThenCurr === null) return greaterThenHead
+
+  lessThenCurr.next = greaterThenHead;
+
+  return lessThenHead
 }
 
 console.log(partition(head,6))
