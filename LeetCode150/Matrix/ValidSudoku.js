@@ -13,8 +13,16 @@
   why not try it by our self
 */
 
+// https://www.youtube.com/watch?v=TjFXEUCMqI8&t=250s
+
+// First the basis idea here is that we need to check that row should not have any duplicate
+// Then we need to check colon should not have any duplicate now this two things are easy to 
+// check because with [i][j] you get row and with [j][i] you get colon and then all you have to 
+// do is just put those values in set and before adding it just check if it is already exist or not
+// if it is already exist then invalid sudoko. NOW WE CHECK FOR ROW AND COLON BUT HARD PART COMES WHEN WE
+// CHECK FOR SQUERE AND THATS WHAT WE HAVE TO FOCUS MORE ON.
 let matrix = [[1,2,3,4,5],[1,2,3,4,5],[1,2,3,4,5]];
-function isValidSudo(arr){
+function isValidSudo(board){
 
    for (let i = 0; i < 9; i++) {
       let row = new Set(),
@@ -24,7 +32,7 @@ function isValidSudo(arr){
       for (let j = 0; j < 9; j++) {
         let _row = board[i][j];
         let _col = board[j][i];
-        let _box = board[3*Math.floor(i/3)+Math.floor(j/3)][3*(i%3)+(j%3)]
+        let _box = board[3*Math.floor(i/3)+Math.floor(j/3)][3*(i%3)+(j%3)] // this is one thing hard to remember
         
         if (_row != '.') {
           if (row.has(_row)) return false;
