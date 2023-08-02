@@ -7,36 +7,50 @@
  */
 
 let matrix = [[1,1,1],[1,0,1],[1,1,1]]
-  // brute force 
-function zeroMetrix(){
- for(let i = 0 ; i < matrix.length ; i++){
-     for(let j = 0 ; j < matrix[i].length ; j++){
-        if(matrix[i][j] === 0){
-            // makeRowZero(matrix,i);
-            makeColonZero(matrix,i,j);
-        }
+
+// MAKE SURE IN LEETCODE QUESTION IT CAN HAVE ANY VALUE NOT ONLY 0 AND 1
+//https://www.youtube.com/watch?v=N0MgLvceX7M
+
+// 1. brute force
+
+function setZeros(matrix){
+  let n = matrix.length;
+  let m = matrix[0].length;
+
+  for(let i = 0 ; i < n ;i++){
+     for(let j = 0 ; j < m ; j++){
+          if(matrix[i][j] === 0){
+              markRow(i,m);
+              markCol(j,n);
+          }
      }
- }
-  console.log(matrix)
-}
+  }
 
-function makeRowZero(matrix,i){
-   let m = matrix[i].length;
-   
-   for(let j = 0 ; j < m ; j++){
-       matrix[i][j] = 0
-   }
-}
-
-function makeColonZero(matrix,col){ 
-    console.log(col)   
-    for(let i = 0 ; i < matrix.length ; i++){
-        for(let j = 0 ; j < matrix[i].length ; j++){
-            if(j ===  col){
-                matrix[i][j] = 0
-            }
+  // change '' to 0
+  for(let i = 0 ; i < n ;i++){
+    for(let j = 0 ; j < m ; j++){
+        if(matrix[i][j] === ''){
+            matrix[i][j] = 0;
         }
     }
-
  }
-zeroMetrix()
+ return matrix;
+}
+
+function markRow(i,m){
+  for(let j = 0 ; j < m ; j++){
+      if(matrix[i][j] !== 0){
+        matrix[i][j] = '';
+      }
+  }   
+}
+
+function markCol(j,n){
+for(let i = 0 ; i < n ; i++){
+  if(matrix[i][j] !== 0){
+    matrix[i][j] = '';
+  }
+}   
+}
+
+setZeros(matrix)
